@@ -4,17 +4,17 @@ This code lets you connect a [Depraz mouse](https://www.oldmouse.com/mouse/logit
 
 You'll need a board with an ATmega32U4 in order to emulate a USB HID device. I used an Arduino Pro Micro and connected it as follows:
 
-Mouse port pin | Arduino pin
----------------|------------
-1 (+5V)        | Vcc
-2 (Y1)         | 0
-3 (Y2)         | 1
-4 (X1)         | 2
-5 (X2)         | 3
-6 (GND)        | GND
-7 (MID btn)    | 7
-8 (RIGHT btn)  | 8
-9 (LEFT btn)   | 9
+ Mouse port pin   | Arduino pin
+------------------|------------
+1 (+5V)           | Vcc
+2 (Y1)            | 0
+3 (Y2)            | 1
+4 (X1)            | 2
+5 (X2)            | 3
+6 (GND)           | GND
+7 (mid button)    | 7
+8 (right button)  | 8
+9 (left button)   | 9
 
 # Notes/Tweaks
 
