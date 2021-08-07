@@ -22,6 +22,18 @@ If you find the pointer moves way too fast/slow for you, tweak the SPEED_CONSTAN
 
 # Caveats
 
-This has only been tested with a red "Type D 83/P" mouse.
-
 When I plugged it into an old Powerbook running Mac OS 9, the OS didn't recognize it as a mouse.
+
+This has only been tested with a red "Type D 83/P" mouse. Apparently the grey ones have a different pinout on the connector:
+
+* 1 - GND
+* 2 - MB
+* 3 - Y
+* 4 - LB
+* 5 - RB
+* 6 - Vcc
+* 7 - Y
+* 8 - X
+* 9 - X
+
+(Source: https://www.vcfed.org/forum/forum/technical-support/vintage-computer-hardware/74403-whitechapel-mg-1-depraz-mouse-grey-pinout#post904391)
