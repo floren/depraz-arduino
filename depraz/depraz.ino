@@ -19,9 +19,7 @@ int left;
 int right;
 
 // Variables the interrupts use to hold pin stats
-int y1;
 int y2;
-int x1;
 int x2;
 
 // If the mouse has moved in either the X or Y axis,
@@ -46,24 +44,25 @@ void setup()
   delay(1000);
 }
 
-// The y-axis ISR
+// The ISR for the Y1 encoder
+// Triggered on falling edge so Y1 == 0
 void yint() {
-  y1 = digitalRead(y1Pin);
   y2 = digitalRead(y2Pin);
 
-  if (y1 == y2) {
+  if (y2 == 0) {
+    // Y2 "beat" us to 0
     ymoved = -1;
   } else {
     ymoved = 1;
   }
 }
 
-// The x-axis ISR
+// The ISR for the X1 encoder
+// Triggered on falling edge so x1 == 0
 void xint() {
-  x1 = digitalRead(x1Pin);
   x2 = digitalRead(x2Pin);
 
-  if (x1 == x2) {
+  if (x2 == 0) {
     xmoved = -1;
   } else {
     xmoved = 1;
