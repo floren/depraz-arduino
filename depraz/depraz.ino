@@ -1,6 +1,6 @@
 #include <Mouse.h>
 
-#define SPEED_CONSTANT 5
+#define SPEED_CONSTANT 3
 
 // Quadrature Encoder Pins
 int y1Pin = 0;
@@ -19,8 +19,10 @@ int left;
 int right;
 
 // Variables the interrupts use to hold pin stats
-int y2;
+int x1;
+int y1;
 int x2;
+int y2;
 
 // If the mouse has moved in either the X or Y axis,
 // the corresponding ISR will set this integer to 1 or -1.
@@ -38,19 +40,21 @@ void setup()
   pinMode(midPin, INPUT);
   pinMode(rightPin, INPUT);
   pinMode(leftPin, INPUT);
-  // Attach interrupts on the falling edges of 1 encoder per pair. This has proven sufficient.
-  attachInterrupt(digitalPinToInterrupt(y1Pin), yint, FALLING);
-  attachInterrupt(digitalPinToInterrupt(x1Pin), xint, FALLING);
+  // Attach interrupts on 1 encoder per pair.
+  attachInterrupt(digitalPinToInterrupt(y1Pin), yint, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(x1Pin), xint, CHANGE);
   delay(1000);
 }
 
 // The ISR for the Y1 encoder
-// Triggered on falling edge so Y1 == 0
+// We trigger on either rising or falling, so we
+// need to read both pins.
 void yint() {
+  y1 = digitalRead(y1Pin);
   y2 = digitalRead(y2Pin);
 
-  if (y2 == 0) {
-    // Y2 "beat" us to 0
+  if (y1 == y2) {
+    // Y2 "beat" us
     ymoved = -1;
   } else {
     ymoved = 1;
@@ -58,11 +62,13 @@ void yint() {
 }
 
 // The ISR for the X1 encoder
-// Triggered on falling edge so x1 == 0
-void xint() {
+// We trigger on either rising or falling, so we
+// need to read both pins.
+void xint() { 
+  x1 = digitalRead(x1Pin);
   x2 = digitalRead(x2Pin);
 
-  if (x2 == 0) {
+  if (x1 == x2) {
     xmoved = -1;
   } else {
     xmoved = 1;
