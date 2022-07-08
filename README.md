@@ -1,6 +1,6 @@
-# Depraz Mice on USB via Arduino
+# Depraz Mice (and others) on USB via Arduino
 
-This code lets you connect a [Depraz mouse](https://www.oldmouse.com/mouse/logitech/digimouse.shtml) to a modern computer via USB. The Depraz mouse has a male DE-9 connector but does *not* use RS-232. Instead, it directly exposes the internal quadrature encoders (two pins for X axis, two pins for Y axis) and each of the three buttons gets its own pin. Add in +5V and GND pins and you've got 9 wires.
+This code lets you connect a [Depraz mouse](https://www.oldmouse.com/mouse/logitech/digimouse.shtml) (or a classic Macintosh DB9 mouse) to a modern computer via USB. The Depraz mouse has a male DE-9 connector but does *not* use RS-232. Instead, it directly exposes the internal quadrature encoders (two pins for X axis, two pins for Y axis) and each of the three buttons gets its own pin. Add in +5V and GND pins and you've got 9 wires.
 
 You'll need a board with an ATmega32U4 in order to emulate a USB HID device. I used an Arduino Pro Micro with 1M pullup resistors connected to pins 7, 8, and 9. To break out the DB9 port, I used [https://www.amazon.com/gp/product/B07PNWF3DW/](https://www.amazon.com/gp/product/B07PNWF3DW/).
 
