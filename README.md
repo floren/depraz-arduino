@@ -2,7 +2,9 @@
 
 This code lets you connect a [Depraz mouse](https://www.oldmouse.com/mouse/logitech/digimouse.shtml) to a modern computer via USB. The Depraz mouse has a male DE-9 connector but does *not* use RS-232. Instead, it directly exposes the internal quadrature encoders (two pins for X axis, two pins for Y axis) and each of the three buttons gets its own pin. Add in +5V and GND pins and you've got 9 wires.
 
-You'll need a board with an ATmega32U4 in order to emulate a USB HID device. I used an Arduino Pro Micro and connected it as follows:
+You'll need a board with an ATmega32U4 in order to emulate a USB HID device. I used an Arduino Pro Micro with 1M pullup resistors connected to pins 7, 8, and 9. To break out the DB9 port, I used [https://www.amazon.com/gp/product/B07PNWF3DW/](https://www.amazon.com/gp/product/B07PNWF3DW/).
+
+For the Depraz, I connected it as follows:
 
  Mouse port pin   | Arduino pin
 ------------------|------------
@@ -16,9 +18,25 @@ You'll need a board with an ATmega32U4 in order to emulate a USB HID device. I u
 8 (right button)  | 8
 9 (left button)   | 9
 
+It also works with an original Macintosh mouse if wired as follows:
+
+ Mouse port pin   | Arduino pin
+------------------|------------
+1 (GND)           | GND
+2 (+5V)           | Vcc
+3 (GND)           | GND
+4 (X2)            | 3
+5 (X1)            | 2
+6 (NC)            | (not connected)
+7 (button)        | 9
+8 (Y2)            | 1
+9 (Y1)            | 0
+
 # Notes/Tweaks
 
 If you find the pointer moves way too fast/slow for you, tweak the SPEED_CONSTANT define at the top of the file.
+
+If your vertical movement is inverted, swap Arduino pins 0 and 1. If horizontal is inverted, swap 2 and 3.
 
 # Caveats
 
